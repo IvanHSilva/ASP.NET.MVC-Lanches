@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VendasLanches.Context;
+using VendasLanches.Repositories;
+using VendasLanches.Repositories.Interfaces;
 
 namespace VendasLanches;
 
@@ -16,6 +18,9 @@ public class Startup {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DBConnection"))
         );
+
+        services.AddTransient<ISnackRepository, SnackRepository>();
+        services.AddTransient<ICategoryRepository, CategoryRepository>();
 
         services.AddControllersWithViews();
     }
