@@ -12,13 +12,7 @@
 <div class="container">
     <div class="row">
         @foreach (Snack snack in Model.Snacks) {
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <img src="/images/snacks/@snack.Image" class="img-fluid">
-                <h5>Preço: @snack.Price.ToString("c")</h5>
-                <h4>@snack.Name</h4>
-                <h7>@snack.Description</h7>
-                <br/>
-            </div>
+            <partial name="_SnacksResume" for="@snack"/>
         }
     </div>
 </div>
