@@ -1,17 +1,24 @@
 ﻿@model IEnumerable<VendasLanches.Models.Snack>
 
-@{ViewData["Title"] = "List";}
-
 <div>
-    <h2>Todos os lanches</h2>
-    <br>
+    <h3>@ViewData["Title"]</h3>
+    <h5>@ViewData["Date"]</h5>
 </div>
 
-@foreach(Snack snack in Model) {
-    <div>
-        <h3>@snack.Name</h3>
-        <img src="/images/snacks/@snack.Image">
-        <h5>Preço: @snack.Price.ToString("c")</h5>
-        <br>
-    </div>
-}
+<hr />
+<h6>@ViewBag.TotalText @ViewBag.TotalSnacks</h6>
+<hr />
+
+<div class="container">
+    <div class="row">
+        @foreach (Snack snack in Model) {
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <img src="/images/snacks/@snack.Image" class="img-fluid">
+                <h5>Preço: @snack.Price.ToString("c")</h5>
+                <h4>@snack.Name</h4>
+                <h7>@snack.Description</h7>
+                <br/>
+            </div>
+        }
+    </div>"
+</div>

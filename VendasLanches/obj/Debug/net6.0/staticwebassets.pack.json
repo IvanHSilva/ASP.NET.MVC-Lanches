@@ -25,6 +25,50 @@
       "PackagePath": "staticwebassets\\images\\carousel13.jpg"
     },
     {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\hot-dog.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\hot-dog.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\lanche-americano.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\lanche-americano.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\lanche-natural.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\lanche-natural.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\lanche-vegetariano.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\lanche-vegetariano.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\misto-quente.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\misto-quente.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\x-bacon.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\x-bacon.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\x-calabresa.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\x-calabresa.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\x-frango.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\x-frango.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\x-mignom.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\x-mignom.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\x-salada.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\x-salada.jpg"
+    },
+    {
+      "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\images\\snacks\\x-tudo.jpg",
+      "PackagePath": "staticwebassets\\images\\snacks\\x-tudo.jpg"
+    },
+    {
       "Id": "E:\\DEV-Projects\\ASP.NET\\VendasLanches\\VendasLanches\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
