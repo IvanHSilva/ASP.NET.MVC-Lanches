@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using VendasLanches.Context;
+﻿using VendasLanches.Context;
 
-namespace VendasLanches.Models; 
+namespace VendasLanches.Models;
 
 public class Cart {
 
@@ -18,26 +17,26 @@ public class Cart {
 
     // Methods
     public static Cart GetCart(IServiceProvider service) {
-        
+
         // Define a session
-        ISession? session = service.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+        ISession? session = service.GetRequiredService<IHttpContextAccessor>()?.HttpContext!.Session;
 
         // Obtain a service of the context
-        AppDbContext context = service.GetService<AppDbContext>();
+        AppDbContext context = service.GetService<AppDbContext>()!;
 
         // Obtain or generate CartId
-        string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+        string cartId = session!.GetString("CartId") ?? Guid.NewGuid().ToString();
 
         // Set CartId in session
-        session.SetString("CartId", cartId);
+        session!.SetString("CartId", cartId);
 
-        return new Cart(context) {CartId = cartId};
+        return new Cart(context!) { CartId = cartId };
     }
 
     public void AddToCart(Snack snack) {
-        
+
         CartItem cartItem = _context.CartItems.SingleOrDefault(
-            s => s.SnackId == snack.Id && s.CartId == CartId);
+            s => s.SnackId == snack.Id && s.CartId == CartId)!;
 
         if (cartItem == null) {
             cartItem = new CartItem {
@@ -47,9 +46,29 @@ public class Cart {
                 Quantity = 1,
                 RegDate = DateTime.Now
             };
+            _context.CartItems.Add(cartItem);
         } else {
             cartItem.Quantity++;
         }
         _context.SaveChanges();
+    }
+
+    public int RemoveFromCart(Snack snack) {
+
+        CartItem cartItem = _context.CartItems.SingleOrDefault(
+            s => s.SnackId == snack.Id && s.CartId == CartId)!;
+
+        int quantity = 0;
+
+        if (cartItem != null) {
+            if (cartItem.Quantity > 1) {
+                cartItem.Quantity--;
+                quantity = cartItem.Quantity;
+            } else {
+                _context.CartItems.Remove(cartItem);
+            }
+        }
+        _context.SaveChanges();
+        return quantity;
     }
 }
