@@ -1,4 +1,5 @@
-﻿using VendasLanches.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using VendasLanches.Context;
 
 namespace VendasLanches.Models;
 
@@ -42,7 +43,7 @@ public class Cart {
             cartItem = new CartItem {
                 CartId = CartId,
                 SnackId = snack.Id,
-                Snack = snack.Name,
+                SnackName = snack.Name,
                 Quantity = 1,
                 RegDate = DateTime.Now
             };
@@ -70,5 +71,26 @@ public class Cart {
         }
         _context.SaveChanges();
         return quantity;
+    }
+
+    public List<CartItem> GetCartItems() {
+
+        return CartItems ?? (CartItems = _context.CartItems
+            .Where(c => c.CartId == CartId).Include(s => s.Snack).ToList());
+    }
+
+    public void ClearCart() {
+
+        IQueryable<CartItem> cartItems = _context.CartItems
+            .Where(c => c.CartId == CartId);
+        _context.CartItems.RemoveRange(cartItems);
+        _context.SaveChanges();
+    }
+
+    public double GetCartTotal() {
+        double totalCart = _context.CartItems
+            .Where(c => c.CartId == CartId)
+            .Select(c => c.Snack.Price * c.Quantity).Sum();
+        return totalCart;
     }
 }

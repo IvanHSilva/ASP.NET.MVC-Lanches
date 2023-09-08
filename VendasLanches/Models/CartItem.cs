@@ -12,7 +12,7 @@ public class CartItem {
     [Column("LancheId"), Required]
     public int SnackId { get; set; }
     [Column("Lanche"), Required, MaxLength(50)]
-    public string Snack { get; set; } = string.Empty;
+    public string SnackName { get; set; } = string.Empty;
     [Column("Quantidade"), Required]
     public int Quantity { get; set; }
     [Column("CarrinhoId"), Required, MaxLength(250)]
@@ -21,15 +21,16 @@ public class CartItem {
     [Display(Name = "Data de Cadastro")]
     [Required]
     public DateTime RegDate { get; set; }
+    public Snack Snack { get; set; } = null!;
 
     // Constructors
     public CartItem(){}
 
-    public CartItem(int id, int snackId, string snack, int quantity, 
+    public CartItem(int id, int snackId, string snackName, int quantity, 
         string cartId, DateTime regDate) {
         Id = id;
         SnackId = snackId;
-        Snack = snack;
+        SnackName = snackName;
         Quantity = quantity;
         CartId = cartId;
         RegDate = regDate;

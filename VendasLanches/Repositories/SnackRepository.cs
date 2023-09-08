@@ -18,5 +18,5 @@ public class SnackRepository : ISnackRepository {
     public IEnumerable<Snack> FavoriteSnacks => _context.Snacks.
         Where(s => s.Favorite);
 
-    public Snack GetSnackById(int id) => _context.Snacks!.FirstOrDefault(s => s.Id == id);
+    public Snack GetSnackById(int id) => _context.Snacks.FirstOrDefault(s => s.Id == id)!;
 }
