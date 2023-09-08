@@ -33,4 +33,23 @@ public class Cart {
 
         return new Cart(context) {CartId = cartId};
     }
+
+    public void AddToCart(Snack snack) {
+        
+        CartItem cartItem = _context.CartItems.SingleOrDefault(
+            s => s.SnackId == snack.Id && s.CartId == CartId);
+
+        if (cartItem == null) {
+            cartItem = new CartItem {
+                CartId = CartId,
+                SnackId = snack.Id,
+                Snack = snack.Name,
+                Quantity = 1,
+                RegDate = DateTime.Now
+            };
+        } else {
+            cartItem.Quantity++;
+        }
+        _context.SaveChanges();
+    }
 }
