@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VendasLanches.Context;
+using VendasLanches.Models;
 using VendasLanches.Repositories;
 using VendasLanches.Repositories.Interfaces;
 
@@ -22,6 +23,7 @@ public class Startup {
         services.AddTransient<ISnackRepository, SnackRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped(ct => Cart.GetCart(ct));
 
         services.AddControllersWithViews();
 
