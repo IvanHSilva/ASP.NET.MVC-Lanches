@@ -13,18 +13,24 @@ public class SnackController : Controller {
         _snackRepository = snackRepository;
     }
 
-    public IActionResult List() {
+    public IActionResult List(string category) {
 
-        ViewData["Title"] = "Todos os Lanches";
-        ViewData["Date"] = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+        IEnumerable<Snack> snacks = null!;
+        string snackCategory = string.Empty;
 
-        // IEnumerable<Snack> snacks = _snackRepository.Snacks;
-        SnackListViewModel snackLVM = new SnackListViewModel();
-        snackLVM.Snacks = _snackRepository.Snacks;
+        if (string.IsNullOrEmpty(category)) {
+            snacks = _snackRepository.Snacks.OrderBy(s => s.Id);
+            snackCategory = "Todos os lanches";
+        } else {
+            snacks = _snackRepository.Snacks.Where(s => s.Category == category)
+                .OrderBy(s => s.Name);
+            snackCategory = category;
+        }
 
-        int totalSnacks = snackLVM.Snacks.Count();
-        ViewBag.TotalText = "Total de lanches: ";
-        ViewBag.TotalSnacks = totalSnacks;
+        SnackListViewModel snackLVM = new SnackListViewModel {
+            Snacks = snacks,
+            Category = snackCategory
+        };
 
         return View(snackLVM);
     }
