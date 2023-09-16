@@ -2,34 +2,35 @@
 
 <div class="container">
     <div class="row">
-        <img src="~/images/icons/cart-icon.jpg" />
 
-        <div>
+        <div class="col-md-8">
+            <img src="~/images/icons/cart-icon.jpg" />
             <h4>Seu carrinho: </h4>
+            <p></p>
         </div>
 
         <table class="table table-bordered table-striped">
 
             <thead>
-            <th>Quantidade</th>
-            <th>Lanche</th>
-            <th class="text-right">Preço</th>
-            <th class="text-right">Subtotal</th>
-            <th></th>
+                <th>Quantidade</th>
+                <th>Lanche</th>
+                <th class="text-right">Preço</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
             </thead>
 
             <tbody>
                 @foreach (CartItem item in Model.Cart.CartItems) {
                     <tr>
-                        <td class="text-center">@item.Quantity</td>
-                        <td class="text-center">@item.SnackName</td>
-                        <td class="text-right">@item.Snack.Price.ToString("c")</td>
-                        <td class="text-right">
+                        <td class="text-center col-1">@item.Quantity</td>
+                        <td class="text-left">@item.SnackName</td>
+                        <td class="text-right col-1">@item.Snack.Price.ToString("c")</td>
+                        <td class="text-right col-1">
                             @((item.Quantity * item.Snack.Price).ToString("c"))
                         </td>
 
-                        <td class="text-center">
-                            <a asp-controller="Cart" asp-action="RemoveItem"
+                        <td class="text-center col-1">
+                            <a asp-controller="Cart" asp-action="RemoveItemFromCart"
                                asp-route-snackId="@item.Snack.Id">
                                 <img src="~/images/icons/trash-icon.png" />
                             </a>
@@ -39,21 +40,21 @@
             </tbody>
 
             <tfoot>
-                <td colspan="3" class="text-right">Total:</td>
-                <td class="text-right">
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
                     @Model.CartTotal.ToString("c")
-                </td>
+            </td>
             </tfoot>
 
         </table>
 
         <div class="text-right">
             <div class="btn-group">
-                <a class="btn btn-success" asp-controller="Order" 
-                    asp-action="Checkout">Concluir Pedido</a>
+                <a class="btn btn-success" asp-controller="Order"
+                   asp-action="Checkout">Concluir Pedido</a>
                 &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-primary" asp-controller="Snack" 
-                    asp-action="List">Continuar Comprando</a>
+                <a class="btn btn-primary" asp-controller="Snack"
+                   asp-action="List">Continuar Comprando</a>
             </div>
         </div>
 

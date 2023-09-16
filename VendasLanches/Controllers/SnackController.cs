@@ -34,4 +34,10 @@ public class SnackController : Controller {
 
         return View(snackLVM);
     }
+
+    public IActionResult Details(int snackId) {
+
+        Snack snack = _snackRepository.Snacks.FirstOrDefault(s => s.Id == snackId)!;
+        return View(snack);
+    }
 }

@@ -1,9 +1,24 @@
 ﻿@model Snack
 
 <div class="col-sm-4 col-md-4 col-lg-4">
-    <img src="/images/snacks/@Model.Image" class="img-fluid">
+    
+    <p><img src="~/images/snacks/@Model.Image" class="img-fluid"></p>
     <h5>Preço: @Model.Price.ToString("c")</h5>
-    <h4>@Model.Name</h4>
-    <h7>@Model.Description</h7>
+    
+    <h4><a asp-controller="Snack" asp-action="Details"
+           asp-route-snackId="@Model.Id">@Model.Name</a>
+    </h4>
+
+    <p>@Model.Description</p>
+
+    <div>
+        <p class="button">
+            <a class="btn btn-primary" id="cartButton" asp-controller="Cart"
+            asp-action="AddItemToCart" asp-route-snackId="@Model.Id">
+            Adicionar ao Carrinho
+        </a>
+        </p>
+    </div>
+
     <br />
 </div>

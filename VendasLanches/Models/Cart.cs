@@ -36,11 +36,17 @@ public class Cart {
 
     public void AddToCart(Snack snack) {
 
-        CartItem cartItem = _context.CartItems.SingleOrDefault(
-            s => s.SnackId == snack.Id && s.CartId == CartId)!;
+        int id = 1; 
+        CartItem cartItem = _context.CartItems.OrderBy(c => c.Id).LastOrDefault()!;
+        if (cartItem != null) { id = cartItem.Id + 1; }
+
+        cartItem = _context.CartItems.SingleOrDefault(
+        s => s.SnackId == snack.Id && s.CartId == CartId)!;
+
 
         if (cartItem == null) {
             cartItem = new CartItem {
+                Id = id,
                 CartId = CartId,
                 SnackId = snack.Id,
                 SnackName = snack.Name,

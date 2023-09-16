@@ -30,8 +30,8 @@ public class CartController : Controller {
 
     public IActionResult AddItemToCart(int snackId) {
 
-        var selectedSnack = _snackRepository.Snacks.FirstOrDefault(
-            s => s.Id == snackId);
+        Snack selectedSnack = _snackRepository.Snacks.FirstOrDefault(
+            s => s.Id == snackId)!;
         if (selectedSnack != null) {
             _cart.AddToCart(selectedSnack);
         }
@@ -39,10 +39,10 @@ public class CartController : Controller {
         return RedirectToAction("Index");
     }
 
-    public IActionResult RemoveItemToCart(int snackId) {
+    public IActionResult RemoveItemFromCart(int snackId) {
 
-        var selectedSnack = _snackRepository.Snacks.FirstOrDefault(
-            s => s.Id == snackId);
+        Snack selectedSnack = _snackRepository.Snacks.FirstOrDefault(
+            s => s.Id == snackId)!;
         if (selectedSnack != null) {
             _cart.RemoveFromCart(selectedSnack);
         }
