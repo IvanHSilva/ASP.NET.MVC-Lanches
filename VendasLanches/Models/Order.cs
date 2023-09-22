@@ -27,7 +27,7 @@ public class Order {
     public DateTime ShippingDate { get; set; }
     [Column("DataEnt"), Required]
     [Display(Name = "Data de Entrega")]
-    public DateTime Deliveryate { get; set; }
+    public DateTime DeliveryDate { get; set; }
 
     public List<OrderItem> OrderItems { get; set; } = null!;
 
@@ -36,7 +36,7 @@ public class Order {
 
     public Order(int id, string client, string phone, string eMail, 
         double totalOrder, int items, DateTime regDate, DateTime shippingDate, 
-        DateTime deliveryate) {
+        DateTime deliveryDate) {
         Id = id;
         Client = client;
         Phone = phone;
@@ -45,6 +45,6 @@ public class Order {
         Items = items;
         RegDate = regDate;
         ShippingDate = shippingDate;
-        Deliveryate = deliveryate;
+        DeliveryDate = deliveryDate;
     }
 }

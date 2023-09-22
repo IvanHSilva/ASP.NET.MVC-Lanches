@@ -22,9 +22,11 @@ public class Startup {
 
         services.AddTransient<ISnackRepository, SnackRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
+        services.AddTransient<IOrderRepository, OrderRepository>();
+        
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(ct => Cart.GetCart(ct));
-
+        
         services.AddControllersWithViews();
 
         services.AddMemoryCache();
