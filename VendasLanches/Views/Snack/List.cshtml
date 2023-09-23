@@ -1,12 +1,14 @@
 ﻿@model SnackListViewModel
 
-<div>
-    <h2>Todos os Lanches</h2>
-    <h5>@ViewData["Date"]</h5>
+<div class="container-fluid">
+    <div class="row">
+        <h3>@ViewData["Title"]</h3>
+        <h6>@ViewData["Date"]</h6>
+    </div>
 </div>
 
 <hr />
-<h6>@ViewBag.TotalText @ViewBag.TotalSnacks</h6>
+<h6>@ViewBag.Text @ViewBag.Total</h6>
 <hr />
 
 <div class="container">

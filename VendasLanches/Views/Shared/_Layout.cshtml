@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - VendasLanches</title>
+    <title>Vendas Lanches</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VendasLanches.styles.css" asp-append-version="true" />
@@ -11,27 +11,37 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VendasLanches</a>
+                
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Super Lanches</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    @await Component.InvokeAsync("CartResume")
-                    @await Component.InvokeAsync("CategoryMenu")
+
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-@*                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Snack" asp-action="List">Lanches</a>
-                        </li>
- *@                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contato</a>
-                        </li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contato</a>
                     </ul>
                 </div>
+
+                <div class="col-md-1">
+                    @await Component.InvokeAsync("CartResume")
+                </div>
+                @await Component.InvokeAsync("CategoryMenu")
+                
+
+                <div>
+                    <form class="navbar-form navbar-right" asp-controller="Snack" asp-action="Search" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Procurar lanche"
+                                    name="searchString" value="@ViewData["searchString"]" />
+                        </div>
+                    </form>
+                </div>
+                
             </div>
         </nav>
     </header>

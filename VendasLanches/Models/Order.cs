@@ -9,11 +9,11 @@ public class Order {
     // Attributes
     [Key] 
     public int Id { get; set; }
-    [Column("Cliente"), Required, MaxLength(100)] 
+    [Column("Cliente"), Required(ErrorMessage = "Nome é obrigatório!"), MaxLength(100)]
     public string Client { get; set; } = string.Empty;
-    [Column("Telefone"), Required, MaxLength(15)] 
+    [Column("Telefone"), Required(ErrorMessage = "Telefone é obrigatório!"), MaxLength(15)] 
     public string Phone { get; set; } = string.Empty;
-    [Column("EMail"), Required, MaxLength(150)] 
+    [Column("EMail"), Required(ErrorMessage = "E-Mail é obrigatório!"), MaxLength(150)] 
     public string EMail { get; set; } = string.Empty;
     [Column("Total")] 
     public double TotalOrder { get; set; }
