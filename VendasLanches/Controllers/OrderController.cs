@@ -23,7 +23,7 @@ public class OrderController : Controller {
     public IActionResult Checkout(Order order) {
         
         int totalItems = 0;
-        double totalAmount = 0;
+        double totalAmount = 0.0;
 
         // Get cart items
         List<CartItem> items = _cart.GetCartItems();
@@ -46,21 +46,24 @@ public class OrderController : Controller {
 
         // Validate data
         if (ModelState.IsValid) {
-            // create Order
+            
+            //// Create Order
             _orderRepository.CreateOrder(order);
 
-            // define messages
-            ViewBag.CheckoutMessage = "Obrigado por comprar conosco! :-)";
-            ViewBag.TotalAmount = _cart.GetCartTotal();
+            // Define messages
+            ViewBag.Message = "Obrigado por comprar conosco! :-)";
+            ViewBag.Amount = _cart.GetCartTotal();
 
-            // clear the cart
+            // Clear the cart
             _cart.ClearCart();
 
-            // return View
-            return View("~/Views/Order/Order.cshtml", order);
+            // Return View
+            return View("~/Views/Order/Confirm.cshtml", order);
+        //} else {
+        //    return Json(new { success = false, errors = ModelState.Values.Where(i => i.Errors.Count > 0) });
         }
 
-        // return View
+        // Return View
         return View(order);
     }
 }

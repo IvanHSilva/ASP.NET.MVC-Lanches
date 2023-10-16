@@ -82,7 +82,8 @@ public class Cart {
     public List<CartItem> GetCartItems() {
 
         return CartItems ?? (CartItems = _context.CartItems
-            .Where(c => c.CartId == CartId).Include(s => s.Snack).ToList());
+            .Where(c => c.CartId == CartId)
+            .Include(s => s.Snack).ToList());
     }
 
     public void ClearCart() {

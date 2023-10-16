@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VendasLanches.Models;
 
-[Table("PedidosItem")]
+[Table("PedidoItem")]
 public class OrderItem {
 
     // Attributes
@@ -21,7 +21,7 @@ public class OrderItem {
     public double Total { get; set; }
     [Column("CarrinhoId"), MaxLength(250)]
     public string CartId { get; set; } = string.Empty;
-    [Column("PedidoId"), Required]
+    [Column("PedidoId"), Required, ForeignKey("Pedidos")]
     public int OrderId { get; set; }
     [Column("DataCad"), Required]
     [Display(Name = "Data de Cadastro")]

@@ -29,7 +29,7 @@ public class Order {
     [Display(Name = "Data de Entrega")]
     public DateTime DeliveryDate { get; set; }
 
-    public List<OrderItem> OrderItems { get; set; } = null!;
+    public List<OrderItem>? OrderItems { get; set; }
 
     // Constructors
     public Order() {}
