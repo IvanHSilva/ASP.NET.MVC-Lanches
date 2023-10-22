@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using VendasLanches.Context;
 using VendasLanches.Models;
 using VendasLanches.Repositories;
@@ -19,6 +20,10 @@ public class Startup {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DBConnection"))
         );
+
+        services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
         services.AddTransient<ISnackRepository, SnackRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
@@ -45,7 +50,10 @@ public class Startup {
         app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseRouting();
+
         app.UseSession();
+
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints => {
