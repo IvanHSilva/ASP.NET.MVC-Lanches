@@ -26,11 +26,13 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contato</a>
                     </ul>
                 </div>
+                @await Html.PartialAsync("_LoginPartial")
 
                 <div class="col-md-1">
                     @await Component.InvokeAsync("CartResume")
                 </div>
                 @await Component.InvokeAsync("CategoryMenu")
+                
                 
 
                 <div>
