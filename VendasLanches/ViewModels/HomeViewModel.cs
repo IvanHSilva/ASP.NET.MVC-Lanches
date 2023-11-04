@@ -3,6 +3,6 @@
 namespace VendasLanches.ViewModels; 
 
 public class HomeViewModel {
-    
-    public IEnumerable<Snack> FavoriteSnacks { get; set; }
+
+    public IEnumerable<Snack> FavoriteSnacks { get; set; } = null!;
 }

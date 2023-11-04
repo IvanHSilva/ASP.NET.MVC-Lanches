@@ -25,6 +25,16 @@ public class Startup {
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
+        services.Configure<IdentityOptions>(options => {
+            // Password policy
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredLength = 3;
+            //options.Password.RequiredUniqueChars = 1;
+        });
+
         services.AddTransient<ISnackRepository, SnackRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IOrderRepository, OrderRepository>();

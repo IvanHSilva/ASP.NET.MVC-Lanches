@@ -55,8 +55,8 @@ public class AccountController : Controller {
     public async Task<IActionResult> Register(LoginViewModel registerVM) {
 
         if (ModelState.IsValid) {
-            var user = new IdentityUser { UserName = registerVM.UserName };
-            var result = await _userManager.CreateAsync(user, registerVM.Password);
+            IdentityUser user = new IdentityUser { UserName = registerVM.UserName };
+            IdentityResult result = await _userManager.CreateAsync(user, registerVM.Password);
 
             if (result.Succeeded) {
                 // await _signInManager.SignInAsync(user, isPersistent: false);
