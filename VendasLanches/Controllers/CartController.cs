@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VendasLanches.Models;
 using VendasLanches.Repositories.Interfaces;
 using VendasLanches.ViewModels;
@@ -27,7 +28,8 @@ public class CartController : Controller {
 
         return View(cartVM);
     }
-
+    
+    [Authorize]
     public IActionResult AddItemToCart(int snackId) {
 
         Snack selectedSnack = _snackRepository.Snacks.FirstOrDefault(
@@ -39,6 +41,7 @@ public class CartController : Controller {
         return RedirectToAction("Index");
     }
 
+    [Authorize]
     public IActionResult RemoveItemFromCart(int snackId) {
 
         Snack selectedSnack = _snackRepository.Snacks.FirstOrDefault(

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VendasLanches.Models;
 using VendasLanches.Repositories.Interfaces;
 
@@ -14,11 +15,13 @@ public class OrderController : Controller {
         _cart = cart;
     }
 
+    [Authorize]
     [HttpGet]
     public IActionResult Checkout() {
         return View();
     }
 
+    [Authorize]
     [HttpPost]
     public IActionResult Checkout(Order order) {
         
