@@ -5,12 +5,12 @@ using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace VendasLanches.Controllers;
 
-public class AccontController : Controller {
+public class AccountController : Controller {
     
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
 
-    public AccontController(UserManager<IdentityUser> userManager, 
+    public AccountController(UserManager<IdentityUser> userManager, 
         SignInManager<IdentityUser> signInManager) {
         _userManager = userManager;
         _signInManager = signInManager;
