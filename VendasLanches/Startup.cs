@@ -67,6 +67,12 @@ public class Startup {
         app.UseAuthorization();
 
         app.UseEndpoints(endpoints => {
+
+            endpoints.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
+
             endpoints.MapControllerRoute(
                 name: "snackCategory",
                 pattern: "Snack/{action}/{category?}",
