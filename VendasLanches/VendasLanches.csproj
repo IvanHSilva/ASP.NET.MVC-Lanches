@@ -28,9 +28,4 @@
     <None Include="wwwroot\images\snacks\x-burguer.jpg" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Views\" />
-  </ItemGroup>
-
 </Project>
