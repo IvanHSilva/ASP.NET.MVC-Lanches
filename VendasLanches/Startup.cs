@@ -4,6 +4,7 @@ using VendasLanches.Context;
 using VendasLanches.Models;
 using VendasLanches.Repositories;
 using VendasLanches.Repositories.Interfaces;
+using VendasLanches.Services;
 
 namespace VendasLanches;
 
@@ -38,6 +39,7 @@ public class Startup {
         services.AddTransient<ISnackRepository, SnackRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IOrderRepository, OrderRepository>();
+        services.AddScoped<ISeedRolerInitial, SeedRolerInitial>();
         
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(ct => Cart.GetCart(ct));
@@ -49,7 +51,9 @@ public class Startup {
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+        ISeedRolerInitial seedRoler) {
+
         if (env.IsDevelopment()) {
             app.UseDeveloperExceptionPage();
         } else {
@@ -60,6 +64,9 @@ public class Startup {
         app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseRouting();
+
+        seedRoler.SeedRoles();
+        seedRoler.SeedUsers();
 
         app.UseSession();
 

@@ -60,6 +60,7 @@ public class AccountController : Controller {
 
             if (result.Succeeded) {
                 // await _signInManager.SignInAsync(user, isPersistent: false);
+                await _userManager.AddToRoleAsync(user, "Member");
                 return RedirectToAction("Login", "Account");
             } else {
                 this.ModelState.AddModelError("Registro", "Falha ao registrar o usuário");
