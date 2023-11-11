@@ -24,9 +24,15 @@
                     <ul class="navbar-nav flex-grow-1">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contato</a>
+
+                        @if (User.IsInRole("Admin")) {
+                            <a class="nav-link text-dark" asp-area="Admin"
+                               asp-controller="Admin" asp-action="Index">Admin</a>
+                        }
                     </ul>
                 </div>
                 @await Html.PartialAsync("_LoginPartial")
+
 
                 <div class="col-md-1">
                     @await Component.InvokeAsync("CartResume")

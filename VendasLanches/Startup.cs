@@ -40,6 +40,10 @@ public class Startup {
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IOrderRepository, OrderRepository>();
         services.AddScoped<ISeedRolerInitial, SeedRolerInitial>();
+
+        services.AddAuthorization(options => {
+            options.AddPolicy("Admin", policy => { policy.RequireRole("Admin"); });
+        });
         
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped(ct => Cart.GetCart(ct));
