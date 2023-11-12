@@ -1,0 +1,35 @@
+﻿@model IEnumerable<VendasLanches.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Categorias</h1>
+
+<p>
+    <a asp-action="Create">Nova Categoria</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Data de Cadastro</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.RegDate.ToString("dd/MM/yyyy")</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ver Dados</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

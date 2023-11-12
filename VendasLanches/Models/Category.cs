@@ -9,13 +9,16 @@ public class Category {
     // Attributes
     [Key]
     public int Id { get; set; }
-    [Column("Nome")][Required, MaxLength(50)]
+    [Column("Nome")][MaxLength(50)]
+    [Required(ErrorMessage = "Nome obrigatório")]
     public string Name { get; set; } = string.Empty;
-    [Column("Descricao")][Required, MaxLength(150)]
+    [Column("Descricao")][MaxLength(150)]
+    [Required(ErrorMessage = "Descrição obrigatória")]
     public string Description { get; set; } = string.Empty;
     [Column("DataCad")]
     [Display(Name = "Data de Cadastro")]
-    [Required]
+    [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
+    [Required(ErrorMessage = "Data de Cadastro Inválida!")]
     public DateTime RegDate { get; set; }
 
     // Constructors
