@@ -1,0 +1,43 @@
+﻿@model IEnumerable<VendasLanches.Models.Order>
+
+@{
+    ViewData["Title"] = "Pedidos";
+}
+
+<h1>Pedidos</h1>
+
+<p>
+    <a asp-action="Create">Novo Pedido</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente:</th>
+            <th>Telefone:</th>
+            <th>E-Mail:</th>
+            <th>Valor:</th>
+            <th>Itens:</th>
+            <th>Data Compra:</th>
+            <th>Data Entrega:</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Client</td>
+            <td>@item.Phone</td>
+            <td>@item.EMail</td>
+            <td>@item.TotalOrder.ToString("N")</td>
+            <td>@item.Items</td>
+            <td>@item.ShippingDate.ToString("dd/MM/yyy")</td>
+            <td>@item.DeliveryDate.ToString("dd/MM/yyy")</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Dados</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

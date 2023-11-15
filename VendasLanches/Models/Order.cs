@@ -15,17 +15,26 @@ public class Order {
     public string Phone { get; set; } = string.Empty;
     [Column("EMail"), Required(ErrorMessage = "E-Mail é obrigatório!"), MaxLength(150)] 
     public string EMail { get; set; } = string.Empty;
-    [Column("Total")] 
+    [Column("Total")]
+    [DataType(DataType.Currency, ErrorMessage = "Total inválido!")]
+    [Required(ErrorMessage = "Total obrigatório")]
+    [Range(1, 199.99, ErrorMessage = "O preço deve estar ente R$ 1,00 e R$ 199,99")]
     public double TotalOrder { get; set; }
     [Column("Items"), Required] 
     public int Items { get; set; }
-    [Column("DataCad"), Required]
+    [Column("DataCad")]
+    [DataType(DataType.Date, ErrorMessage = "Data Inválida!")]
+    [Required(ErrorMessage = "Data obrigatória")]
     [Display(Name = "Data de Cadastro")]
     public DateTime RegDate { get; set; }
-    [Column("DataEnv"), Required]
+    [Column("DataEnv")]
+    [DataType(DataType.Date, ErrorMessage = "Data Inválida!")]
+    [Required(ErrorMessage = "Data obrigatória")]
     [Display(Name = "Data de Envio")]
     public DateTime ShippingDate { get; set; }
-    [Column("DataEnt"), Required]
+    [Column("DataEnt")]
+    [DataType(DataType.Date, ErrorMessage = "Data Inválida!")]
+    [Required(ErrorMessage = "Data obrigatória")]
     [Display(Name = "Data de Entrega")]
     public DateTime DeliveryDate { get; set; }
 

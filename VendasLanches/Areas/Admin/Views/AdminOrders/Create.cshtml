@@ -1,0 +1,67 @@
+﻿@model VendasLanches.Models.Order
+
+@{
+    ViewData["Title"] = "Novo Pedido";
+}
+
+<h1>Novo</h1>
+<h4>Pedido</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Client" class="control-label">Cliente:</label>
+                <input asp-for="Client" class="form-control" />
+                <span asp-validation-for="Client" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label">Telefone:</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMail" class="control-label">E-Mail:</label>
+                <input asp-for="EMail" class="form-control" />
+                <span asp-validation-for="EMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalOrder" class="control-label">Total:</label>
+                <input asp-for="TotalOrder" class="form-control" />
+                <span asp-validation-for="TotalOrder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Items" class="control-label">Itens:</label>
+                <input asp-for="Items" class="form-control" />
+                <span asp-validation-for="Items" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegDate" class="control-label">Data Cad:</label>
+                <input asp-for="RegDate" class="form-control" />
+                <span asp-validation-for="RegDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShippingDate" class="control-label">Data Venda:</label>
+                <input asp-for="ShippingDate" class="form-control" />
+                <span asp-validation-for="ShippingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeliveryDate" class="control-label">Data Entrega:</label>
+                <input asp-for="DeliveryDate" class="form-control" />
+                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <br />
+    <a asp-action="Index">Voltar</a>
+</div>
+
