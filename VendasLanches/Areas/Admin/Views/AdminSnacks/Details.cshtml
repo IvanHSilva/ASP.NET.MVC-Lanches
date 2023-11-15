@@ -1,0 +1,36 @@
+﻿@model VendasLanches.Models.Snack
+
+@{
+    ViewData["Title"] = "Dados";
+}
+
+<h1>Dados</h1>
+<h4>Lanche</h4>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">Nome:</dt>
+        <dd class = "col-sm-10">@Model.Name</dd>
+        <dt class = "col-sm-2">Descrição:</dt>
+        <dd class = "col-sm-10">@Model.Description</dd>
+        <dt class = "col-sm-2">Detalhes:</dt>
+        <dd class = "col-sm-10">@Model.Details</dd>
+        <dt class = "col-sm-2">Preço:</dt>
+        <dd class = "col-sm-10">@Model.Price.ToString("N")</dd>
+        <dt class = "col-sm-2">Imagem:</dt>
+        <dd class = "col-sm-10">@Model.Image</dd>
+        <dt class = "col-sm-2">Favorito</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.Favorite)</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.HaveStock)</dt>
+        <dd class = "col-sm-10">@Html.DisplayFor(model => model.HaveStock)</dd>
+        <dt class = "col-sm-2">Categoria:</dt>
+        <dd class = "col-sm-10">@Model.Category</dd>
+        <dt class = "col-sm-2">@Html.DisplayNameFor(model => model.RegDate)</dt>
+        <dd class = "col-sm-10">@Model.RegDate.ToString("dd/MM/yyyy")</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Alterar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

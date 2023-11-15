@@ -1,0 +1,43 @@
+﻿@model IEnumerable<VendasLanches.Models.Snack>
+
+@{
+    ViewData["Title"] = "Lanches";
+}
+
+<h1>Lanches</h1>
+
+<p>
+    <a asp-action="Create">Novo Lanche</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome:</th>
+            <th>Descrição:</th>
+            <th>Preço:</th>
+            <th>Favorito:</th>
+            <th>Estoque:</th>
+            <th>Categoria:</th>
+            <th>Data Cad:</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price.ToString("N")</td>
+            <td>@Html.DisplayFor(modelItem => item.Favorite)</td>
+            <td>@Html.DisplayFor(modelItem => item.HaveStock)</td>
+            <td>@item.Category</td>
+            <td>@item.RegDate.ToString("dd/MM/yyyy")</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Dados</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
