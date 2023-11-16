@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using VendasLanches.Context;
 using VendasLanches.Models;
 
@@ -13,14 +14,29 @@ namespace VendasLanches.Areas.Admin.Controllers {
         }
 
         // GET: Admin/AdminOrders
-        public async Task<IActionResult> Index() {
-            return _context.Orders != null ?
-                        View(await _context.Orders.ToListAsync()) :
-                        Problem("Entity set 'AppDbContext.Orders'  is null.");
+        //public async Task<IActionResult> Index() {
+        //    return _context.Orders != null ?
+        //                View(await _context.Orders.ToListAsync()) :
+        //                Problem("Entity set 'AppDbContext.Orders'  is null.");
+        //}
+
+        public async Task<IActionResult> Index(string filter, int pageindex = 1,
+            string sort = "Client") {
+            
+            IQueryable<Order> result = _context.Orders.AsNoTracking().AsQueryable();
+            
+            if (!string.IsNullOrWhiteSpace(filter)) {
+                result = result.Where(o => o.Client.Contains(filter));
+            }
+            PagingList<Order> model = await PagingList.CreateAsync(result, 5, pageindex,
+                sort, "Client");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+            
+            return View(model);
         }
 
-        // GET: Admin/AdminOrders/Details/5
-        public async Task<IActionResult> Details(int? id) {
+            // GET: Admin/AdminOrders/Details/5
+            public async Task<IActionResult> Details(int? id) {
             if (id == null || _context.Orders == null) {
                 return NotFound();
             }

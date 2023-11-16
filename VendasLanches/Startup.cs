@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using VendasLanches.Context;
 using VendasLanches.Models;
 using VendasLanches.Repositories;
@@ -49,6 +50,11 @@ public class Startup {
         services.AddScoped(ct => Cart.GetCart(ct));
         
         services.AddControllersWithViews();
+
+        services.AddPaging(options => {
+            options.ViewName = "Bootstrap4";
+            options.PageParameterName = "pageindex";
+        });
 
         services.AddMemoryCache();
         services.AddSession();
