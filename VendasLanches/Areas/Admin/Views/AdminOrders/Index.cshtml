@@ -8,7 +8,7 @@
 
 <form method="get" class="form-inline">
     <input name="filter" class="form-control" placeholder="filtro"
-    value="@Model.RouteValue!["Filter"]" />
+           value="@Model.RouteValue!["Filter"]" />
     <button type="submit" class="btn btn-info">
         <span class="glyphicon glyphicon-search" aria-hidden="true">
             Procurar
@@ -39,21 +39,22 @@ Total de Pedidos: @Model.TotalRecordCount
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>@item.Client</td>
-            <td>@item.Phone</td>
-            <td>@item.EMail</td>
-            <td>@item.TotalOrder.ToString("N")</td>
-            <td>@item.Items</td>
-            <td>@item.ShippingDate.ToString("dd/MM/yyy")</td>
-            <td>@item.DeliveryDate.ToString("dd/MM/yyy")</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Dados</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+            <tr>
+                <td>@item.Client</td>
+                <td>@item.Phone</td>
+                <td>@item.EMail</td>
+                <td>@item.TotalOrder.ToString("N")</td>
+                <td>@item.Items</td>
+                <td>@item.ShippingDate.ToString("dd/MM/yyy")</td>
+                <td>@item.DeliveryDate.ToString("dd/MM/yyy")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Dados</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a> |
+                    <a asp-action="OrderSnacks" asp-route-id="@item.Id">Itens</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

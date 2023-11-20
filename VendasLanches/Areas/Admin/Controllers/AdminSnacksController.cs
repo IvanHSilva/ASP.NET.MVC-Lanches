@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 using VendasLanches.Context;
 using VendasLanches.Models;
 
@@ -13,10 +15,25 @@ namespace VendasLanches.Areas.Admin.Controllers {
         }
 
         // GET: Admin/AdminSnacks
-        public async Task<IActionResult> Index() {
-            return _context.Snacks != null ?
-                        View(await _context.Snacks.ToListAsync()) :
-                        Problem("Entity set 'AppDbContext.Snacks'  is null.");
+        //public async Task<IActionResult> Index() {
+        //    return _context.Snacks != null ?
+        //                View(await _context.Snacks.ToListAsync()) :
+        //                Problem("Entity set 'AppDbContext.Snacks'  is null.");
+        //}
+
+        public async Task<IActionResult> Index(string filter, int pageindex = 1,
+            string sort = "Name") {
+
+            IQueryable<Snack> result = _context.Snacks.AsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter)) {
+                result = result.Where(s => s.Name.Contains(filter));
+            }
+            PagingList<Snack> model = await PagingList.CreateAsync(result, 5, pageindex,
+                sort, "Name");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
         }
 
         // GET: Admin/AdminSnacks/Details/5
@@ -68,6 +85,7 @@ namespace VendasLanches.Areas.Admin.Controllers {
             if (snack == null) {
                 return NotFound();
             }
+            ViewBag.Category = new SelectList(_context.Categories,"Id", "Name", snack.Category);
             return View(snack);
         }
 

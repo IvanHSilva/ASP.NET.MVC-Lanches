@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 using VendasLanches.Context;
 using VendasLanches.Models;
+using VendasLanches.ViewModels;
 
 namespace VendasLanches.Areas.Admin.Controllers {
+    
     [Area("Admin")]
     public class AdminOrdersController : Controller {
         private readonly AppDbContext _context;
@@ -146,6 +148,26 @@ namespace VendasLanches.Areas.Admin.Controllers {
 
         private bool OrderExists(int id) {
             return (_context.Orders?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        public IActionResult OrderSnacks(int id) {
+            
+            Order? order = _context.Orders.
+                Include(o => o.OrderItems).
+                ThenInclude(s => s.Snack).
+                FirstOrDefault(o => o.Id == id);
+            
+            if (order == null) {
+                Response.StatusCode = 404;
+                return View("OrderNotFound", id);
+            }
+
+            OrderSnackViewModel orderSnacks = new OrderSnackViewModel() {
+                Order = order,
+                OrderItems = order.OrderItems!
+            };
+
+            return View(orderSnacks);
         }
     }
 }

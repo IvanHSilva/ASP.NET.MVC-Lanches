@@ -58,6 +58,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5PcmRlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/DEV-Projects/ASP.NET/VendasLanches/VendasLanches/Areas/Admin/Views/AdminOrders/OrderNotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5PcmRlcnNcT3JkZXJOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/DEV-Projects/ASP.NET/VendasLanches/VendasLanches/Areas/Admin/Views/AdminOrders/OrderSnacks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5PcmRlcnNcT3JkZXJTbmFja3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/DEV-Projects/ASP.NET/VendasLanches/VendasLanches/Areas/Admin/Views/AdminSnacks/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5TbmFja3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
