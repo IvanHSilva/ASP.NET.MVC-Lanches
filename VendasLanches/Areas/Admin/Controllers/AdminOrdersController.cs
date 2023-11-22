@@ -43,13 +43,22 @@ namespace VendasLanches.Areas.Admin.Controllers {
                 return NotFound();
             }
 
-            var order = await _context.Orders
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Order order = await _context.Orders.
+                Include(o => o.OrderItems).
+                ThenInclude(s => s.Snack).
+                FirstOrDefaultAsync(o => o.Id == id);
+
             if (order == null) {
                 return NotFound();
             }
 
-            return View(order);
+            OrderSnackViewModel orderSnacks = new OrderSnackViewModel() {
+                Order = order,
+                OrderItems = order.OrderItems!
+            };
+
+            return View(orderSnacks);
+            // return View(order);
         }
 
         // GET: Admin/AdminOrders/Create
@@ -90,8 +99,6 @@ namespace VendasLanches.Areas.Admin.Controllers {
         }
 
         // POST: Admin/AdminOrders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Client,Phone,EMail,TotalOrder,Items,RegDate,ShippingDate,DeliveryDate")] Order order) {
@@ -148,26 +155,6 @@ namespace VendasLanches.Areas.Admin.Controllers {
 
         private bool OrderExists(int id) {
             return (_context.Orders?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-
-        public IActionResult OrderSnacks(int id) {
-            
-            Order? order = _context.Orders.
-                Include(o => o.OrderItems).
-                ThenInclude(s => s.Snack).
-                FirstOrDefault(o => o.Id == id);
-            
-            if (order == null) {
-                Response.StatusCode = 404;
-                return View("OrderNotFound", id);
-            }
-
-            OrderSnackViewModel orderSnacks = new OrderSnackViewModel() {
-                Order = order,
-                OrderItems = order.OrderItems!
-            };
-
-            return View(orderSnacks);
         }
     }
 }
