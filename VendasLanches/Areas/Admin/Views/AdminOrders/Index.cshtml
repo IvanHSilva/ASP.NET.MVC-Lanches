@@ -21,10 +21,6 @@ Total de Pedidos: @Model.TotalRecordCount
     <vc:pager paging-list="@Model"></vc:pager>
 </div>
 
-<p>
-    <a asp-action="Create">Novo Pedido</a>
-</p>
-
 <table class="table">
     <thead>
         <tr>
@@ -45,9 +41,9 @@ Total de Pedidos: @Model.TotalRecordCount
                 <td>@item.Phone</td>
                 <td>@item.EMail</td>
                 <td>@item.TotalOrder.ToString("N")</td>
-                <td>@item.Items</td>
-                <td>@item.ShippingDate.ToString("dd/MM/yyy")</td>
-                <td>@item.DeliveryDate.ToString("dd/MM/yyy")</td>
+                <td align="center">@item.Items</td>
+                <td align="center">@item.ShippingDate.ToString("dd/MM/yyy")</td>
+                <td align="center">@item.DeliveryDate.ToString("dd/MM/yyy")</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Dados</a> |

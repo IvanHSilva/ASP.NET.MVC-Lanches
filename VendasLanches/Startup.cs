@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
+using VendasLanches.Areas.Admin.Services;
 using VendasLanches.Context;
 using VendasLanches.Models;
 using VendasLanches.Repositories;
@@ -41,6 +42,7 @@ public class Startup {
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IOrderRepository, OrderRepository>();
         services.AddScoped<ISeedRolerInitial, SeedRolerInitial>();
+        services.AddScoped<SellersReportService>();
 
         services.AddAuthorization(options => {
             options.AddPolicy("Admin", policy => { policy.RequireRole("Admin"); });
