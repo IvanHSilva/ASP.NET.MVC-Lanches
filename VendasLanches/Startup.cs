@@ -4,6 +4,7 @@ using ReflectionIT.Mvc.Paging;
 using VendasLanches.Areas.Admin.Services;
 using VendasLanches.Context;
 using VendasLanches.Models;
+using VendasLanches.Models.Configurations;
 using VendasLanches.Repositories;
 using VendasLanches.Repositories.Interfaces;
 using VendasLanches.Services;
@@ -43,6 +44,8 @@ public class Startup {
         services.AddTransient<IOrderRepository, OrderRepository>();
         services.AddScoped<ISeedRolerInitial, SeedRolerInitial>();
         services.AddScoped<SellersReportService>();
+        services.Configure<ImagesConfiguration>(Configuration.
+            GetSection("ImagesFolderConfiguration"));
 
         services.AddAuthorization(options => {
             options.AddPolicy("Admin", policy => { policy.RequireRole("Admin"); });
