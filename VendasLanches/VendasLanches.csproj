@@ -30,4 +30,8 @@
     <None Include="wwwroot\images\snacks\x-burguer.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\snack\" />
+  </ItemGroup>
+
 </Project>

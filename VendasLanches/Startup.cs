@@ -44,6 +44,7 @@ public class Startup {
         services.AddTransient<IOrderRepository, OrderRepository>();
         services.AddScoped<ISeedRolerInitial, SeedRolerInitial>();
         services.AddScoped<SellersReportService>();
+        
         services.Configure<ImagesConfiguration>(Configuration.
             GetSection("ImagesFolderConfiguration"));
 

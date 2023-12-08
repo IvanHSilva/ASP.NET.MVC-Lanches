@@ -1,4 +1,4 @@
-namespace VendasLanches.Models.Configurations
+namespace VendasLanches.Models
 {
     public class ErrorViewModel
     {
